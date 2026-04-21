@@ -1,0 +1,597 @@
+body {
+    margin: 0;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+
+    /* THE BACKGROUND IMAGE */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('mainbackground.jpg');
+    background-size: cover;       /* Makes it fill the whole screen */
+    background-position: center;  /* Centers the background image */
+    background-attachment: fixed; /* Parallax effect: tabs move, background stays still */
+    background-repeat: no-repeat;
+}
+
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    width: 90%; 
+    max-width: 1000px;
+    gap: 20px;
+}
+
+.menu-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px; /* Bigger base height for images */
+    text-decoration: none;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Snappy bounce effect */
+    border: 5px solid rgba(247, 242, 242, 0.1);
+    
+    /* Background Image Defaults */
+    background-size: cover;
+    background-position: center 55%;
+    filter: grayscale(40%); /* Slightly faded until hovered */
+}
+
+/* Individual Images - Replace 'your-image.jpg' with your actual file names */
+#tab-inventory { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('inventorybackground.jpg'); 
+    background-position: center 35%; /* Shows the bottom of the inventory photo */
+}
+
+#tab-sponsors { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('sponsorsbackground.jpg'); 
+    background-position: center 65%; /* Shifts the sponsor logos to the left */
+}
+
+#tab-manufacturing { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('factorybackground.jpg'); 
+    background-position: center; /* Shows the top-middle area */
+}
+
+#tab-portfolio { 
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('portfoliobackground.jpg'); 
+    background-position: left 63%; /* Shifts the focus to the right side */
+}
+
+.menu-tab span {
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+    z-index: 2;
+}
+
+/* THE HOVER EFFECT */
+.menu-tab:hover {
+    height: 220px;        /* Gets significantly taller */
+    filter: grayscale(0%); /* Brings back full color */
+    transform: scale(1.2);
+    border-color: #a88100; /* Optional: adds a glow color */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
+/* --- UNIVERSAL NAVIGATION BAR --- */
+
+.universal-nav {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(20, 20, 20, 0.95); /* Deep dark background */
+    backdrop-filter: blur(10px);              /* Modern blurred effect */
+    border-bottom: 2px solid #a88100;         /* Signature blue line */
+    position: fixed;                          /* Keeps it at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000;                            /* Ensures it stays above everything */
+    display: flex;
+    align-items: center;
+}
+
+.nav-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    color: #a88100;
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #a88100;
+}
+
+body {
+    padding-top: 80px !important; 
+}
+
+
+/* ============================================================
+   SECTION 2: INVENTORY DASHBOARD
+   ============================================================ */
+
+/* --- THE FIX: BOXES THAT FILL AND MEET IN THE MIDDLE --- */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal halves horizontally */
+    grid-template-rows: 1fr 1fr;    /* Two equal halves vertically */
+    
+    /* This makes the grid fill the entire viewable area */
+    width: 100vw;   
+    height: 90vh;   
+    
+    /* Gap is the "space" between them meeting in the middle */
+    gap: 15px;      
+    padding: 20px;
+    
+    /* Centers the whole grid on the screen */
+    margin: 0 auto; 
+    box-sizing: border-box;
+}
+
+.box {
+    background-color: rgba(30, 30, 30, 0.9);
+    border: 2px solid #444;
+    border-radius: 12px;
+    
+    /* Forces each box to take up all available space in its "square" */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    
+    /* Ensures padding doesn't push the box "out" of its grid spot */
+    box-sizing: border-box; 
+}
+
+/* Hover effect to make it feel interactive */
+.box:hover {
+    background-color: rgba(50, 50, 50, 1);
+    border-color: #a88100;
+    transform: scale(1.01); /* Subtle grow so it doesn't break the grid */
+}
+
+.box h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive text size */
+    margin: 0;
+    text-transform: uppercase;
+}
+
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split screen left/right */
+    grid-template-rows: 1fr 1fr;    /* Split screen top/bottom */
+    height: 90vh;                   /* Fills most of the screen */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* ============================================================
+ --- GOOGLE SHEETS PAGE STYLES --- 
+============================================================ */
+
+.sheet-page-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px); /* Fills the screen minus the nav bar height */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.sheet-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.sheet-header h1 {
+    color: #a88100;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.sheet-header p {
+    color: #888;
+    margin: 5px 0 0 0;
+    font-style: italic;
+}
+
+.iframe-wrapper {
+    flex-grow: 1; /* Makes the sheet expand to fill the rest of the page */
+    width: calc(83vw - 120px);   /* Force width to 100% of the viewport width */
+    height: 100%;
+    border: 2px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white; /* Helps the sheet stand out */
+}
+
+/* --- FULL GALLERY PAGE STYLES --- */
+
+.gallery-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.full-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.gallery-card {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    border-color: #a88100;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-card p {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* --- LIGHTBOX (ENLARGE) LOGIC - REDUCED SIZE --- */
+
+.lightbox {
+    display: none; 
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox:target {
+    display: flex; 
+}
+
+.lightbox-content {
+    position: relative;
+    /* --- CHANGE THESE VALUES TO CONTROL SIZE --- */
+    width: 600px;       /* Set a specific maximum width */
+    max-width: 85%;     /* But don't let it be wider than the screen on mobile */
+    max-height: 80vh;   /* Don't let it be taller than 80% of the screen */
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: auto;
+    border: 3px solid #a88100;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5); /* Stronger shadow to pop */
+}
+
+/* Move the X button closer to the image corner */
+.close-btn {
+    position: absolute;
+    top: -45px;
+    right: -10px;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #a88100;
+}
+
+.close-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: default;
+}
+
+/* --- HORIZONTAL PORTFOLIO STYLES --- */
+
+.portfolio-container {
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.section-title {
+    color: #a88100;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+}
+
+/* --- SOCIAL ROW --- */
+.social-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 95%;
+    margin-bottom: 40px;
+}
+
+.social-box {
+    flex: 1;
+    max-width: 300px;
+    height: 200px;
+    background: rgba(30, 30, 30, 0.9);
+    border: 3px solid #333;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- HOVER COLORS --- */
+.social-box.ig:hover {
+    border-color: #E1306C;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(225, 48, 108, 0.3);
+}
+
+.social-box.tt:hover {
+    border-color: #ff0050;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 80, 0.3);
+}
+
+.social-box.li:hover {
+    border-color: #0077b5;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3);
+}
+
+.social-box.yt:hover {
+    border-color: #ff0000;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.3);
+}
+
+/* --- CONTACT BARS (EMAIL + WEBSITE) --- */
+.contact-bar-standalone {
+    width: 95%;
+    max-width: 900px;
+    background: rgba(30, 30, 30, 0.9);
+    border: 2px solid #444;
+    border-radius: 15px;
+    padding: 25px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* ADD THIS: Enables the smooth bounce animation */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ADD THIS: The actual bounce/lift on hover */
+.contact-bar-standalone:hover {
+    transform: translateY(-5px); /* Gentle lift */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Specific Hover Accents */
+.web-bar:hover {
+    border-color: #00aaff; /* Blue for website */
+}
+
+.email-bar:hover {
+    border-color: #00ff00; /* Green for email */
+}
+
+.contact-bar-standalone span {
+    color: #a88100;
+    font-weight: bold;
+    font-size: 1rem;
+    letter-spacing: 2px;
+}
+
+.contact-bar-standalone a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.contact-bar-standalone a:hover {
+    color: #a88100;
+}
+
+
+
+/* --- FULL SCREEN STRETCHED BOXES --- */
+
+.sponsor-stretch-row {
+    display: flex;
+    width: 100vw;       /* Forces the row to be the full width of the screen */
+    padding: 0 20px;    /* Small gap at the very edges of the screen */
+    gap: 15px;          /* Space between the three boxes */
+    box-sizing: border-box;
+    margin-bottom: 50px;
+}
+
+.sponsor-box-hero {
+    flex: 1;            /* This makes the box itself grow to fill the space */
+    height: 400px;      /* Tall height so the boxes look massive */
+    background: #1e1e1e;
+    border: 3px solid #333;
+    border-radius: 15px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover Effect: The box itself lifts and glows */
+.sponsor-box-hero:hover {
+    transform: translateY(-15px);
+    background: #252525;
+}
+
+#box-platinum:hover { border-color: #e5e4e2; box-shadow: 0 15px 40px rgba(229, 228, 226, 0.3); }
+#box-materials:hover { border-color: #ff8c00; box-shadow: 0 15px 40px rgba(255, 140, 0, 0.3); }
+#box-tools:hover { border-color: #00ff00; box-shadow: 0 15px 40px rgba(0, 255, 0, 0.3); }
+
+/* Text inside the giant boxes */
+.sponsor-box-hero h2 {
+    font-size: 2.5rem; /* Large font for large boxes */
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.sponsor-box-hero p {
+    font-size: 1.1rem;
+    color: #a88100;
+    margin-top: 15px;
+}
+
+/* --- GLOBAL HYPERLINK RESET FOR BOXES --- */
+.sponsor-box-hero {
+    text-decoration: none !important; /* Kills the underline */
+}
+
+.sponsor-box-hero h2 {
+    color: white !important; /* Keeps text white, not blue */
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.sponsor-box-hero p {
+    color: #a88100 !important; /* Keeps subtext gold, not blue */
+    text-decoration: none;
+}
+
+/* --- IMAGE VIEW PAGE STYLING (BIGGER IMAGES) --- */
+
+.content-view-container {
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 90vh;
+}
+
+/* Dual Image Layout (Who Are We) - Wider and Taller */
+.dual-image-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 98%;           /* Stretches near edges */
+    max-width: 1600px;    /* Max width for 4K/Large monitors */
+    margin-top: 10px;
+}
+
+.image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 82vh;     /* Uses almost all vertical space */
+    object-fit: contain;
+    border: 3px solid #a88100;
+    border-radius: 15px;
+}
+
+/* Single Image Layout (Offer/Tiers) - Massive Centerpiece */
+.single-image-layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.image-wrapper-large {
+    width: 98%;
+    max-width: 1200px;    /* Much wider than before */
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper-large img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;     /* Fills the screen height nicely */
+    object-fit: contain;
+    border: 3px solid #a88100;
+    border-radius: 15px;
+}
+
+/* Quick Mobile stacking for Who Are We */
+@media (max-width: 900px) {
+    .dual-image-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    .image-wrapper img {
+        max-width: 95%;
+    }
+}
